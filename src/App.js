@@ -1,11 +1,15 @@
 import React from "react";
-import Transmission from "./components/Transmission";
+import { Route, Switch } from "react-router-dom";
+
+import pages from "./pages";
 
 function App() {
   return (
-    <div>
-      <Transmission />
-    </div>
+    <Switch>
+      {pages.map(d => (
+        <Route key={d.path} {...d} />
+      ))}
+    </Switch>
   );
 }
 
