@@ -1,0 +1,52 @@
+.wrap {
+  background: #8e7aff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 40vh;
+  padding: 1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.wrap h1 {
+  margin: 0;
+  padding: 0.5em 0;
+  font-weight: lighter;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.5em;
+}
+.item {
+  background: #f6f5ff;
+  font-size: 1.2rem;
+  padding: 1.3em 2em;
+  box-shadow: 0 5px 2px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 1em;
+}
+.listProgressWrap {
+  height: 30px;
+  background: #e8e6f5;
+  border-radius: 5px;
+  margin-top: 10px;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.listProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(to right, #725ef2 70%, #563cfa 100%);
+  border-radius: 5px;
+  animation: listProgressAnim 1s infinite both;
+  transition: background 1s;
+}
+.listProgress.complete {
+  background: linear-gradient(to right, #168c26 70%, #15754c 100%);
+}
