@@ -24,3 +24,6 @@
   );
   border-image-slice: 1;
 }
+.form {
+  margin: 0.5em 0;
+}

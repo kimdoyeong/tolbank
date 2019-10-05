@@ -1,24 +1,33 @@
 import React from "react";
 import NavigationIcon from "./NavigationIcon";
+import Menu from "./Menu";
 
-const Navigation = () => (
-  <nav
-    style={{
-      display: "flex",
-      background: "linear-gradient(to bottom,#ece8ff 80%, #d4cef2)",
-      boxShadow: "0 5px 5px rgba(142, 122, 255, 0.1)"
-    }}
-  >
-    <div
+const Navigation = () => {
+  const state = React.useState(false);
+
+  return (
+    <nav
       style={{
-        padding: "1em",
-        cursor: "pointer"
+        display: "flex",
+        background: "linear-gradient(to bottom,#ece8ff 80%, #d4cef2)",
+        boxShadow: "0 5px 5px rgba(142, 122, 255, 0.1)"
       }}
-      role="button"
     >
-      <NavigationIcon />
-    </div>
-  </nav>
-);
+      <div
+        style={{
+          padding: "1em",
+          cursor: "pointer"
+        }}
+        role="button"
+        onClick={() => {
+          state[1](true);
+        }}
+      >
+        <NavigationIcon />
+      </div>
+      <Menu state={state} />
+    </nav>
+  );
+};
 
 export default Navigation;

@@ -1,0 +1,32 @@
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3001;
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.3);
+}
+.contents {
+  background: white;
+  padding: 1.5em;
+  margin: 1em;
+  min-height: 40vh;
+  min-width: 300px;
+  box-sizing: border-box;
+}
+.contents h1 {
+  font-weight: lighter;
+  text-align: center;
+}
