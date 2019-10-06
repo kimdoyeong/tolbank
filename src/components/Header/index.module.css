@@ -1,0 +1,15 @@
+.wrap {
+  background: #8e7aff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 20vh;
+  padding: 1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.wrap h1 {
+  color: white;
+  margin: 0;
+  font-size: 3rem;
+}

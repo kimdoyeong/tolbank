@@ -1,13 +1,17 @@
 import { combineReducers } from "redux";
 import signup, { signupSaga } from "./signup";
 import auth, { authSaga } from "./auth";
+import file, { fileSaga } from "./file";
+import view, { viewSaga } from "./view";
 import { all } from "redux-saga/effects";
 
 export function* rootSaga() {
-  yield all([signupSaga(), authSaga()]);
+  yield all([signupSaga(), authSaga(), fileSaga(), viewSaga()]);
 }
 
 export default combineReducers({
   signup,
-  auth
+  auth,
+  file,
+  view
 });

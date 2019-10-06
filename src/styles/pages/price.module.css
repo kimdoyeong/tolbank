@@ -1,0 +1,28 @@
+.main {
+  padding: 1em;
+}
+.card {
+  background: white;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3), -5px 0 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3),
+    -5px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  margin: 1em;
+  box-sizing: border-box;
+  flex: 1;
+}
+.card h1 {
+  margin: 0;
+}
+.cardlist {
+  display: flex;
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    font-size: 1.2rem;
+  }
+  .cardlist {
+    flex-direction: column;
+  }
+}

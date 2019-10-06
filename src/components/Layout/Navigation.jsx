@@ -1,6 +1,7 @@
 import React from "react";
 import NavigationIcon from "./NavigationIcon";
 import Menu from "./Menu";
+import NotLoginRedirect from "../NotLoginRedirect";
 
 const Navigation = () => {
   const state = React.useState(false);
@@ -13,6 +14,8 @@ const Navigation = () => {
         boxShadow: "0 5px 5px rgba(142, 122, 255, 0.1)"
       }}
     >
+      <NotLoginRedirect />
+
       <div
         style={{
           padding: "1em",

@@ -1,18 +1,17 @@
 import React from "react";
-
+import { withRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import SEO from "../components/Layout/SEO";
-import Transmission from "../components/Transmission";
-import NotLoginRedirect from "../components/NotLoginRedirect";
+import File from "../components/File";
 
-const DrivePage = () => {
+const DrivePage = ({ location: { pathname } }) => {
+  const slug = pathname.replace(/^\/drive/, "");
   return (
     <Layout>
-      <NotLoginRedirect />
-      <SEO title="Drive" />
-      <Transmission />
+      <SEO title={slug || "/"} />
+      <File slug={slug} />
     </Layout>
   );
 };
 
-export default DrivePage;
+export default withRouter(DrivePage);

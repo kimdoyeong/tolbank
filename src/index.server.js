@@ -5,7 +5,11 @@ import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
 import * as path from "path";
 import App from "./App";
 import { StaticRouter } from "react-router-dom";
-
+import reducer, { rootSaga } from "./store/reducer";
+import createSagaMiddleware, { END } from "redux-saga";
+import PreloadContext from "./lib/PreloadContext";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
 const statsFile = path.resolve("./build/loadable-stats.json");
 
 function createPage(root, tags) {
@@ -31,19 +35,42 @@ const app = express();
 const serverRender = async (req, res, next) => {
   const context = {};
   const extractor = new ChunkExtractor({ statsFile });
+  const sagaMiddleware = createSagaMiddleware();
+
+  const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+
+  const sagaPromise = sagaMiddleware.run(rootSaga).toPromise();
+  const preloadContext = {
+    done: false,
+    promises: []
+  };
 
   const jsx = (
     <ChunkExtractorManager extractor={extractor}>
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
+      <PreloadContext.Provider value={preloadContext}>
+        <Provider store={store}>
+          <StaticRouter location={req.url} context={context}>
+            <App />
+          </StaticRouter>
+        </Provider>
+      </PreloadContext.Provider>
     </ChunkExtractorManager>
   );
-
+  ReactDOMServer.renderToStaticMarkup(jsx);
+  store.dispatch(END);
+  try {
+    await sagaPromise;
+    await Promise.all(preloadContext.promises);
+  } catch (e) {
+    return res.status(500);
+  }
+  preloadContext.done = true;
   const root = ReactDOMServer.renderToString(jsx);
+  const stateString = JSON.stringify(store.getState()).replace(/</g, "\\u003c");
+  const stateScript = `<script>__PRELOADED_STATE__ = ${stateString}</script>`;
 
   const tags = {
-    scripts: extractor.getScriptTags(),
+    scripts: stateScript + extractor.getScriptTags(),
     links: extractor.getLinkTags(),
     styles: extractor.getStyleTags()
   };

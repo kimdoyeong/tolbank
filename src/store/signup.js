@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { createUser as createUserAPI } from "../lib/api/signup";
+import sagaFailHandler from "../lib/sagaFailHandler";
 
 const CREATE_USER = "signup/CREATE_USER";
 const CREATE_USER_SUCCESS = "signup/CREATE_USER_SUCCESS";
@@ -34,14 +35,7 @@ export default handleActions(
         success: true
       };
     },
-    [CREATE_USER_FAIL]: (state, action) => {
-      return {
-        success: false,
-        error: action.payload.response
-          ? action.payload.response.data.message
-          : action.payload.message
-      };
-    },
+    [CREATE_USER_FAIL]: sagaFailHandler,
     [CREATE_USER_INIT]: () => {
       return initialState;
     }

@@ -13,8 +13,21 @@ const pages = [
   },
   {
     path: "/drive",
-    exact: true,
     component: loadable(() => import("./DrivePage"))
+  },
+  {
+    path: "/price",
+    exact: true,
+    component: loadable(() => import("./PricePage"))
+  },
+  {
+    path: "/transmission",
+    exact: true,
+    component: loadable(() => import("./TransmissionPage"))
+  },
+  {
+    path: "/file/*",
+    component: loadable(() => import("./FilePage"))
   }
 ];
 
