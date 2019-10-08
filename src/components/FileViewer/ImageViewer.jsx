@@ -16,6 +16,7 @@ const ImageViewer = () => {
           maxWidth: "100%"
         }}
         src={getViewLink(token)}
+        alt="Preview"
       ></img>
     </div>
   );

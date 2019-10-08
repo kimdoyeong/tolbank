@@ -21,7 +21,7 @@ const FileViewer = ({ slug }) => {
   }
   const downloader = <DownloadViewer token={token} slug={slug} />;
   let viewer = downloader;
-  const type = mimeTypes.contentType(slug);
+  const type = mimeTypes.lookup(slug);
   if (type.match(/^text/)) {
     viewer = (
       <div>
