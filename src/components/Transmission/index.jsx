@@ -4,11 +4,12 @@ import TransmissionList from "./List";
 import { useSelector, useDispatch } from "react-redux";
 import { getTransmission } from "../../store/transmission";
 import ErrorComponent from "../Error";
+import { usePreloader } from "../../lib/PreloadContext";
 
 const Transmission = () => {
   const { success, error, data } = useSelector(state => state.transmission);
   const dispatch = useDispatch();
-
+  usePreloader(() => dispatch(getTransmission()));
   useEffect(() => {
     dispatch(getTransmission());
     const id = setInterval(() => {
