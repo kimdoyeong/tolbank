@@ -11,9 +11,12 @@ const Transmission = () => {
 
   useEffect(() => {
     dispatch(getTransmission());
-    setInterval(() => {
+    const id = setInterval(() => {
       dispatch(getTransmission());
     }, 1000);
+    return () => {
+      clearInterval(id);
+    };
   }, [dispatch]);
   if (error) return <ErrorComponent error={error} />;
   if (!success) return <div>로딩 중...</div>;
