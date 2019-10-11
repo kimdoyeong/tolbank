@@ -50,3 +50,13 @@
 .listProgress.complete {
   background: linear-gradient(to right, #168c26 70%, #15754c 100%);
 }
+.progress {
+  font-size: 0.8em;
+  color: black;
+  padding: 0 1em;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

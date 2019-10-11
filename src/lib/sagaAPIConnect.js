@@ -3,9 +3,9 @@ function sagaAPIConnect(action, func, ...args) {
   return function*() {
     try {
       const res = yield call(func, ...args);
-      put({ type: action + "_SUCCESS", payload: res });
+      yield put({ type: action + "_SUCCESS", payload: res.data });
     } catch (e) {
-      put({ type: action + "_FAIL", payload: e });
+      yield put({ type: action + "_FAIL", payload: e });
     }
   };
 }

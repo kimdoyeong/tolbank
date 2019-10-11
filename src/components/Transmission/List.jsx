@@ -14,6 +14,7 @@ const TransmissionList = ({ name, progress }) => {
             width: `${progress}%`
           }}
         ></div>
+        <div className={style.progress}>{progress.toFixed(2)}%</div>
       </div>
     </div>
   );

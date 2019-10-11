@@ -25,7 +25,7 @@ export default handleActions(
     [DATA_SUCCESS]: (_, action) => {
       return {
         success: true,
-        data: action.data
+        data: action.payload.data
       };
     },
     [DATA_FAIL]: sagaFailHandler
