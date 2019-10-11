@@ -17,7 +17,7 @@ const Transmission = () => {
   }, [dispatch]);
   if (error) return <ErrorComponent error={error} />;
   if (!success) return <div>로딩 중...</div>;
-  console.log(data);
+
   return (
     <div className={style.wrap}>
       <h1>Transmission</h1>
@@ -28,6 +28,8 @@ const Transmission = () => {
             name={d.name}
             progress={d.percentDone * 100}
             key={d.hashString}
+            totalSize={d.totalSize}
+            rateDownload={d.rateDownload}
           />
         ))}
       </div>
